@@ -40,6 +40,13 @@ namespace SweepZones
 		private bool colorsValid;
 		private readonly List<System.Guid> priorityLabels = new List<System.Guid>();
 		private int labeledVersion = -1;
+		private GameObject outlineObject;
+		private Mesh outlineMesh;
+		private readonly List<Vector3> outlineVertices = new List<Vector3>();
+		private readonly List<int> outlineTriangles = new List<int>();
+
+		private const float StrokeThickness = 0.1f;
+		private static readonly Color StrokeColor = new Color(1f, 1f, 1f, 0.5f);
 
 		protected override void OnPrefabInit()
 		{
@@ -234,6 +241,7 @@ namespace SweepZones
 				return;
 			AddRegionLabels(store.SweepCells, textPrefab, isMop: false);
 			AddRegionLabels(store.MopCells, textPrefab, isMop: true);
+			RebuildOutline(store);
 		}
 
 		private void ClearPriorityLabels()
@@ -244,6 +252,89 @@ namespace SweepZones
 					screen.RemoveWorldText(guid);
 			priorityLabels.Clear();
 			labeledVersion = -1;
+			if (outlineObject != null)
+				outlineObject.SetActive(value: false);
+		}
+
+		/// <summary>
+		/// Draws a light perimeter stroke (white, 50% opacity) just inside the boundary
+		/// of every zone region, rendered as a thin quad mesh in front of the game's
+		/// cell-tint plane (which is one flat color per cell and cannot draw strokes).
+		/// </summary>
+		private void RebuildOutline(ZoneStore store)
+		{
+			if (outlineObject == null)
+			{
+				outlineObject = new GameObject("SweepZonesOutline");
+				outlineObject.layer = LayerMask.NameToLayer("Overlay");
+				if (World.Instance != null)
+					outlineObject.transform.SetParent(World.Instance.transform);
+				// The tool-tint plane sits at z = -6 on the Overlay layer; draw just in front.
+				outlineObject.transform.SetLocalPosition(new Vector3(0f, 0f, -6.1f));
+				outlineMesh = new Mesh { indexFormat = UnityEngine.Rendering.IndexFormat.UInt32 };
+				outlineObject.AddComponent<MeshFilter>().sharedMesh = outlineMesh;
+				MeshRenderer renderer = outlineObject.AddComponent<MeshRenderer>();
+				renderer.sharedMaterial = new Material(Shader.Find("Sprites/Default")) { color = StrokeColor };
+				renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+				renderer.receiveShadows = false;
+				renderer.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
+			}
+			outlineVertices.Clear();
+			outlineTriangles.Clear();
+			AddOutlineQuads(store.SweepCells);
+			AddOutlineQuads(store.MopCells);
+			outlineMesh.Clear();
+			outlineMesh.SetVertices(outlineVertices);
+			outlineMesh.SetTriangles(outlineTriangles, 0);
+			outlineObject.SetActive(outlineTriangles.Count > 0);
+		}
+
+		private void AddOutlineQuads(IReadOnlyDictionary<int, PrioritySetting> zone)
+		{
+			foreach (KeyValuePair<int, PrioritySetting> kvp in zone)
+			{
+				Grid.CellToXY(kvp.Key, out int x, out int y);
+				bool left = !SamePriorityAt(zone, x - 1, y, kvp.Value);
+				bool right = !SamePriorityAt(zone, x + 1, y, kvp.Value);
+				bool down = !SamePriorityAt(zone, x, y - 1, kvp.Value);
+				bool up = !SamePriorityAt(zone, x, y + 1, kvp.Value);
+				if (!(left || right || down || up))
+					continue;
+				float x0 = x, x1 = x + 1f, y0 = y, y1 = y + 1f;
+				if (left)
+					AddQuad(x0, y0, x0 + StrokeThickness, y1);
+				if (right)
+					AddQuad(x1 - StrokeThickness, y0, x1, y1);
+				// Trim horizontal strokes where a vertical stroke already covers the corner.
+				float trimX0 = x0 + (left ? StrokeThickness : 0f);
+				float trimX1 = x1 - (right ? StrokeThickness : 0f);
+				if (down)
+					AddQuad(trimX0, y0, trimX1, y0 + StrokeThickness);
+				if (up)
+					AddQuad(trimX0, y1 - StrokeThickness, trimX1, y1);
+			}
+		}
+
+		private static bool SamePriorityAt(IReadOnlyDictionary<int, PrioritySetting> zone, int x, int y, PrioritySetting priority)
+		{
+			if (x < 0 || y < 0 || x >= Grid.WidthInCells || y >= Grid.HeightInCells)
+				return false;
+			return zone.TryGetValue(Grid.XYToCell(x, y), out PrioritySetting other) && other == priority;
+		}
+
+		private void AddQuad(float minX, float minY, float maxX, float maxY)
+		{
+			int baseIndex = outlineVertices.Count;
+			outlineVertices.Add(new Vector3(minX, minY, 0f));
+			outlineVertices.Add(new Vector3(minX, maxY, 0f));
+			outlineVertices.Add(new Vector3(maxX, maxY, 0f));
+			outlineVertices.Add(new Vector3(maxX, minY, 0f));
+			outlineTriangles.Add(baseIndex);
+			outlineTriangles.Add(baseIndex + 1);
+			outlineTriangles.Add(baseIndex + 2);
+			outlineTriangles.Add(baseIndex);
+			outlineTriangles.Add(baseIndex + 2);
+			outlineTriangles.Add(baseIndex + 3);
 		}
 
 		private void AddRegionLabels(IReadOnlyDictionary<int, PrioritySetting> zone, GameObject textPrefab, bool isMop)
