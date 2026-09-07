@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="$(MSBuildThisFileDirectory)..\..\common\oni-mod.props" />
+
+  <PropertyGroup>
+    <AssemblyName>SweepZones</AssemblyName>
+    <RootNamespace>SweepZones</RootNamespace>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)..\..\common\oni-mod.targets" />
+
+</Project>
