@@ -5,10 +5,14 @@
   <PropertyGroup>
     <AssemblyName>SweepZones</AssemblyName>
     <RootNamespace>SweepZones</RootNamespace>
-    <Version>1.3.0</Version>
+    <Version>1.4.0</Version>
     <UsePLib>true</UsePLib>
     <ReferenceUnityUI>true</ReferenceUnityUI>
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="assets\tool_icon.png" />
+  </ItemGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)..\..\common\oni-mod.targets" />
 
