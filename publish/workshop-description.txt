@@ -1,0 +1,18 @@
+Adds a Sweep Zones tool to the toolbar. Paint an area once and debris inside it gets marked for sweeping automatically, including anything that lands there later. Mop zones do the same for spilled liquid.
+
+This is a spiritual successor to Rubacava's Sweep Zones, which crashes on current game versions. It is a rewrite from scratch, not a fork, so zones painted with the old mod do not carry over.
+
+[h2]How it works[/h2]
+[list]
+[*]The tool has four modes: paint sweep zone, erase sweep zone, paint mop zone, erase mop zone.
+[*]Zones remember the priority selected while painting, yellow alert included. Number keys work like they do for other tools.
+[*]Items get their priority once, when first marked. If you re-prioritize something by hand the mod leaves it alone.
+[*]With the tool active, zones are tinted and each contiguous area shows its priority. The display follows the selected mode, sweep or mop.
+[*]Zones are saved with your game. Erasing a zone keeps errands that already exist; cancel those with the vanilla Cancel tool.
+[*]Optional hotkey, default Shift+Z, rebindable under Options / Game / Controls / Mods.
+[/list]
+
+[h2]Compatibility[/h2]
+Works with the base game and all DLCs, on build 744825 (U59) or newer. Does not touch the overlay system, so mods that add overlays are unaffected. PLib is included; there is nothing else to install.
+
+Source and issue tracker: https://github.com/isochronous/sweep-zones
