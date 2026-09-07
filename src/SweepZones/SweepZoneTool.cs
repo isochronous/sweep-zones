@@ -146,8 +146,19 @@ namespace SweepZones
 			RefreshModePresentation();
 		}
 
+		private bool InMopMode => mode == ZoneMode.Mop || mode == ZoneMode.ClearMop;
+
+		private IReadOnlyDictionary<int, PrioritySetting> ActiveCells(ZoneStore store)
+		{
+			return InMopMode ? store.MopCells : store.SweepCells;
+		}
+
 		private void RefreshModePresentation()
 		{
+			// Zone visibility follows the mode selector: sweep modes show sweep zones,
+			// mop modes show mop zones — never both at once.
+			colorsValid = false;
+			labeledVersion = -1;
 			bool painting = mode == ZoneMode.Sweep || mode == ZoneMode.Mop;
 			ToolMenu.Instance.PriorityScreen.Show(painting);
 			if (hoverCard != null)
@@ -207,10 +218,9 @@ namespace SweepZones
 			coloredVersion = store.Version;
 			colorsValid = true;
 			cellColors.Clear();
-			foreach (KeyValuePair<int, PrioritySetting> kvp in store.SweepCells)
-				cellColors.Add(new ToolMenu.CellColorData(kvp.Key, SweepColor(kvp.Value)));
-			foreach (KeyValuePair<int, PrioritySetting> kvp in store.MopCells)
-				cellColors.Add(new ToolMenu.CellColorData(kvp.Key, MopColor(kvp.Value)));
+			bool mop = InMopMode;
+			foreach (KeyValuePair<int, PrioritySetting> kvp in ActiveCells(store))
+				cellColors.Add(new ToolMenu.CellColorData(kvp.Key, mop ? MopColor(kvp.Value) : SweepColor(kvp.Value)));
 		}
 
 		public override void LateUpdate()
@@ -239,8 +249,7 @@ namespace SweepZones
 				? AreaVisualizerTextPrefabField.GetValue(this) as GameObject : null;
 			if (textPrefab == null)
 				return;
-			AddRegionLabels(store.SweepCells, textPrefab, isMop: false);
-			AddRegionLabels(store.MopCells, textPrefab, isMop: true);
+			AddRegionLabels(ActiveCells(store), textPrefab, isMop: InMopMode);
 			RebuildOutline(store);
 		}
 
@@ -281,8 +290,7 @@ namespace SweepZones
 			}
 			outlineVertices.Clear();
 			outlineTriangles.Clear();
-			AddOutlineQuads(store.SweepCells);
-			AddOutlineQuads(store.MopCells);
+			AddOutlineQuads(ActiveCells(store));
 			outlineMesh.Clear();
 			outlineMesh.SetVertices(outlineVertices);
 			outlineMesh.SetTriangles(outlineTriangles, 0);
@@ -349,11 +357,7 @@ namespace SweepZones
 					LocText text = label.GetComponentInChildren<LocText>();
 					if (text != null)
 						text.color = LabelColor(priority, isMop);
-					Vector3 position = LabelPosition(cells);
-					// Keep overlapping sweep+mop labels on the same cells readable.
-					if (isMop)
-						position.y -= 0.35f;
-					label.transform.SetPosition(position);
+					label.transform.SetPosition(LabelPosition(cells));
 				}
 				priorityLabels.Add(guid);
 			}
