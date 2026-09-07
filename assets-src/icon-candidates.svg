@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 300" font-family="Segoe UI, sans-serif">
+  <defs>
+    <!-- Angled push broom, drawn in a 64x64 box -->
+    <g id="broom">
+      <g transform="rotate(35 32 30)">
+        <rect x="29.3" y="0" width="5.4" height="26" rx="2.7" fill="#fff"/>
+        <rect x="25.8" y="26" width="12.4" height="6.5" rx="2" fill="#fff"/>
+        <path fill="#fff" fill-rule="evenodd" d="M25,33 L39,33 L46,56 L18,56 Z
+          M24.6,44 h2.3 v12.5 h-2.3 Z
+          M30.9,44 h2.3 v12.5 h-2.3 Z
+          M37.2,44 h2.3 v12.5 h-2.3 Z"/>
+      </g>
+    </g>
+
+    <!-- A: broom + motion strokes -->
+    <g id="variantA">
+      <use href="#broom"/>
+      <g stroke="#fff" stroke-width="3.4" stroke-linecap="round">
+        <line x1="5" y1="36" x2="14" y2="36"/>
+        <line x1="3" y1="45" x2="13" y2="45"/>
+        <line x1="6" y1="54" x2="16" y2="54"/>
+      </g>
+    </g>
+
+    <!-- B: broom inside zone corner brackets -->
+    <g id="variantB">
+      <use href="#broom" transform="translate(10 9) scale(0.72)"/>
+      <g fill="#fff">
+        <rect x="1" y="1" width="15" height="3.2"/><rect x="1" y="1" width="3.2" height="15"/>
+        <rect x="48" y="1" width="15" height="3.2"/><rect x="59.8" y="1" width="3.2" height="15"/>
+        <rect x="1" y="59.8" width="15" height="3.2"/><rect x="1" y="48" width="3.2" height="15"/>
+        <rect x="48" y="59.8" width="15" height="3.2"/><rect x="59.8" y="48" width="3.2" height="15"/>
+      </g>
+    </g>
+
+    <!-- C: dustpan catching debris -->
+    <g id="variantC">
+      <g fill="#fff">
+        <path d="M10,52 L42,52 L37,33 L19,33 Z"/>
+        <rect x="35" y="27.5" width="17" height="4.6" rx="2.3" transform="rotate(-22 35 30)"/>
+        <circle cx="17" cy="24" r="2.4"/>
+        <circle cx="25" cy="17" r="2.9"/>
+        <circle cx="31" cy="25" r="2.1"/>
+      </g>
+      <g stroke="#fff" stroke-width="2.6" stroke-linecap="round">
+        <line x1="5" y1="30" x2="11" y2="30"/>
+        <line x1="4" y1="38" x2="10" y2="38"/>
+      </g>
+    </g>
+  </defs>
+
+  <rect x="0" y="0" width="580" height="300" fill="#22262a"/>
+  <text x="20" y="30" fill="#dddddd" font-size="15">Sweep Zones tool icon candidates (white glyph — the game tints per button state)</text>
+
+  <!-- Large previews -->
+  <g>
+    <rect x="20" y="50" width="160" height="160" rx="10" fill="#3a4045"/>
+    <use href="#variantA" transform="translate(36 66) scale(2)"/>
+    <text x="100" y="232" fill="#cccccc" font-size="14" text-anchor="middle">A — broom + motion</text>
+
+    <rect x="210" y="50" width="160" height="160" rx="10" fill="#3a4045"/>
+    <use href="#variantB" transform="translate(226 66) scale(2)"/>
+    <text x="290" y="232" fill="#cccccc" font-size="14" text-anchor="middle">B — broom in zone brackets</text>
+
+    <rect x="400" y="50" width="160" height="160" rx="10" fill="#3a4045"/>
+    <use href="#variantC" transform="translate(416 66) scale(2)"/>
+    <text x="480" y="232" fill="#cccccc" font-size="14" text-anchor="middle">C — dustpan + debris</text>
+  </g>
+
+  <!-- Toolbar-size previews (~36px like in game) -->
+  <g>
+    <rect x="20" y="248" width="44" height="44" rx="6" fill="#3a4045"/>
+    <use href="#variantA" transform="translate(24 252) scale(0.56)"/>
+    <rect x="210" y="248" width="44" height="44" rx="6" fill="#3a4045"/>
+    <use href="#variantB" transform="translate(214 252) scale(0.56)"/>
+    <rect x="400" y="248" width="44" height="44" rx="6" fill="#3a4045"/>
+    <use href="#variantC" transform="translate(404 252) scale(0.56)"/>
+    <text x="80" y="276" fill="#888888" font-size="12">toolbar size</text>
+  </g>
+</svg>

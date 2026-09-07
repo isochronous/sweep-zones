@@ -45,7 +45,7 @@ namespace SweepZones
 		private readonly List<Vector3> outlineVertices = new List<Vector3>();
 		private readonly List<int> outlineTriangles = new List<int>();
 
-		private const float StrokeThickness = 0.1f;
+		private const float StrokeThickness = 0.05f;
 		private static readonly Color StrokeColor = new Color(1f, 1f, 1f, 0.5f);
 
 		protected override void OnPrefabInit()
