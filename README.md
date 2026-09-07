@@ -11,11 +11,12 @@ A ground-up rewrite of the feature set of [Berkays/Rubacava's Sweep Zones](https
 - **Zone display without overlays**: zones are tinted while the tool is active (warm gradient for sweep, cool for mop, brighter = higher priority) via the game's per-tool cell-coloring hook — the overlay system is untouched, so overlay-adding mods (foot traffic, transit tube, etc.) are unaffected. This deliberately fixes the original's overlay conflicts.
 - **Saved with your game** (zones serialize into the save file; loading without the mod just drops them).
 - Mop zones follow vanilla mop rules (liquid on a solid floor, ≤ 150 kg).
-- No dependencies (no PLib), no image assets (the toolbar icon is drawn procedurally).
+- **Rebindable hotkey** (default `Shift+Z`) to activate the tool, configurable under options → game → controls → Mods (via [PLib](https://github.com/peterhaneve/ONIMods/tree/main/PLib), merged into the mod DLL).
+- No image assets (the toolbar icon is drawn procedurally).
 
 Erasing a zone keeps errands that were already created — cancel those with the vanilla Cancel tool if needed.
 
-Not carried over from the original: the standalone overlay-menu entry (by design, see above), rebindable hotkeys (the original's defaulted to unbound), and the Forbid Items integration.
+Not carried over from the original: the standalone overlay-menu entry (by design, see above) and the Forbid Items integration.
 
 ## Building
 

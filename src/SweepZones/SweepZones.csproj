@@ -6,6 +6,7 @@
     <AssemblyName>SweepZones</AssemblyName>
     <RootNamespace>SweepZones</RootNamespace>
     <Version>1.0.0</Version>
+    <UsePLib>true</UsePLib>
   </PropertyGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)..\..\common\oni-mod.targets" />

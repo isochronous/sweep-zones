@@ -54,7 +54,7 @@ namespace SweepZones
 			public static void Postfix(ToolMenu __instance)
 			{
 				__instance.basicTools.Add(ToolMenu.CreateToolCollection(
-					ModStrings.ToolName, ToolIcon.SpriteName, Action.NumActions,
+					ModStrings.ToolName, ToolIcon.SpriteName, SweepZonesMod.ToolAction,
 					"SweepZoneTool", ModStrings.ToolTooltip, largeIcon: false));
 			}
 		}
