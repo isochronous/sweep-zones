@@ -1,11 +1,11 @@
 "workshopitem"
 {
-	"appid"		"457140"
-	"publishedfileid"		"3797765156"
+	"appid"			"457140"
+	"publishedfileid"	"3797765156"
 	"contentfolder"		"C:\dev\sweep-zones\publish\content"
 	"previewfile"		"C:\dev\sweep-zones\publish\preview.png"
 	"visibility"		"2"
-	"title"		"Sweep Zones"
+	"title"			"Sweep Zones Redux"
 	"description"		"Adds a Sweep Zones tool to the toolbar. Paint an area once and debris inside it gets marked for sweeping automatically, including anything that lands there later. Mop zones do the same for spilled liquid.
 
 This is a spiritual successor to Rubacava's Sweep Zones, which crashes on current game versions. It is a rewrite from scratch, not a fork, so zones painted with the old mod do not carry over.

@@ -1,4 +1,4 @@
-# Sweep Zones
+# Sweep Zones Redux
 
 An [Oxygen Not Included](https://www.klei.com/games/oxygen-not-included) mod that adds a **Sweep Zones** tool to the toolbar: paint persistent zones and any debris that lands in them is automatically marked for sweeping (and moppable puddles receive mop errands) at the priority you painted with — indefinitely, until you erase the zone.
 
