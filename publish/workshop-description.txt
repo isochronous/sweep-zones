@@ -5,6 +5,7 @@ This is a spiritual successor to Rubacava's Sweep Zones, which crashes on curren
 [h2]How it works[/h2]
 [list]
 [*]The tool has four modes: paint sweep zone, erase sweep zone, paint mop zone, erase mop zone.
+[*]Zones go on open cells directly above solid ground. Cells in a drag that do not qualify are skipped, so a rough box drag over uneven terrain paints just the floors.
 [*]Zones remember the priority selected while painting, yellow alert included. Number keys work like they do for other tools.
 [*]Items get their priority once, when first marked. If you re-prioritize something by hand the mod leaves it alone.
 [*]With the tool active, zones are tinted and each contiguous area shows its priority. The display follows the selected mode, sweep or mop.

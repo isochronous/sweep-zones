@@ -189,18 +189,35 @@ namespace SweepZones
 			switch (mode)
 			{
 			case ZoneMode.Sweep:
-				store.SetSweep(cell, ToolMenu.Instance.PriorityScreen.GetLastSelectedPriority());
+				if (IsValidZoneCell(cell))
+					store.SetSweep(cell, ToolMenu.Instance.PriorityScreen.GetLastSelectedPriority());
 				break;
 			case ZoneMode.ClearSweep:
 				store.RemoveSweep(cell);
 				break;
 			case ZoneMode.Mop:
-				store.SetMop(cell, ToolMenu.Instance.PriorityScreen.GetLastSelectedPriority());
+				if (IsValidZoneCell(cell))
+					store.SetMop(cell, ToolMenu.Instance.PriorityScreen.GetLastSelectedPriority());
 				break;
 			case ZoneMode.ClearMop:
 				store.RemoveMop(cell);
 				break;
 			}
+		}
+
+		/// <summary>
+		/// Zones live on open cells directly above solid ground: air, liquid, or
+		/// plant-occupied cells over a floor. Grid.Solid is the sim's material
+		/// solidity, so surfaces that only Duplicants can stand on (for example
+		/// open pneumatic doors) do not count as ground. Cells that fail the test
+		/// are simply skipped while painting; erasing is never restricted.
+		/// </summary>
+		private static bool IsValidZoneCell(int cell)
+		{
+			if (!Grid.IsValidCell(cell) || Grid.Solid[cell])
+				return false;
+			int below = Grid.CellBelow(cell);
+			return Grid.IsValidCell(below) && Grid.Solid[below];
 		}
 
 		public override void GetOverlayColorData(out HashSet<ToolMenu.CellColorData> colors)
