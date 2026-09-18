@@ -1,7 +1,12 @@
+// DO NOT upload this with steamcmd workshop_build_item: ONI can only download legacy
+// single-file items, and steamcmd creates manifest items that fail for every subscriber
+// ("Steam failed to download the mod"). Publish with Klei's "Oxygen Not Included Uploader"
+// (Steam Library > Tools) pointed at publish/content, or common/tools/WorkshopUpload.
+// Item 3797765156 was created that way on 2026-09-07 (never public); 3804026640 replaced it.
 "workshopitem"
 {
 	"appid"			"457140"
-	"publishedfileid"	"3797765156"
+	"publishedfileid"	"3804026640"
 	"contentfolder"		"C:\dev\sweep-zones\publish\content"
 	"previewfile"		"C:\dev\sweep-zones\publish\preview.png"
 	"visibility"		"2"
