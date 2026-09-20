@@ -19,9 +19,9 @@ Erasing a zone keeps errands that were already created — cancel those with the
 
 Not carried over from the original: the standalone overlay-menu entry (by design, see above) and the Forbid Items integration.
 
-## Publishing
+## Installing
 
-Workshop item: https://steamcommunity.com/sharedfiles/filedetails/?id=3804026640. Publish with Klei's **Oxygen Not Included Uploader** (Steam Library > Tools) from `publish/content`, or `common/tools/WorkshopUpload`, never with steamcmd; see the [oni-mods-common README](https://github.com/isochronous/oni-mods-common#publishing-to-the-steam-workshop) for why.
+Subscribe on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3804026640).
 
 ## Building
 
