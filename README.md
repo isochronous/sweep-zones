@@ -21,7 +21,18 @@ Not carried over from the original: the standalone overlay-menu entry (by design
 
 ## Installing
 
-Subscribe on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3804026640).
+**Steam Workshop:** subscribe on the [Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=3804026640) and enable the mod in the game's Mods menu.
+
+**As a local mod** (no Steam needed):
+
+1. Download `SweepZones-<version>.zip` from the [latest release](https://github.com/isochronous/sweep-zones/releases/latest).
+2. Extract it into a new folder named `SweepZones` inside the game's local mods folder, so that `mod.yaml` ends up directly inside it (create `local` if it does not exist):
+   - Windows: `Documents\Klei\OxygenNotIncluded\mods\local\SweepZones`
+   - Linux: `~/.config/unity3d/Klei/Oxygen Not Included/mods/local/SweepZones`
+   - macOS: `~/Library/Application Support/unity.Klei.Oxygen Not Included/mods/local/SweepZones`
+3. Start the game, enable the mod under **Mods** in the main menu, and let the game restart.
+
+Use one copy or the other: with both the Workshop and the local copy enabled the mod loads twice.
 
 ## Building
 
