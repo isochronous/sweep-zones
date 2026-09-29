@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.5.0 - 2026-09-29
 
 - Zones prune themselves: each time the tool is opened or its mode switched, zone cells whose floor was dug out or that were built over are dropped, so only valid zones are shown.
 
