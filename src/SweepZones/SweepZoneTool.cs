@@ -156,7 +156,11 @@ namespace SweepZones
 		private void RefreshModePresentation()
 		{
 			// Zone visibility follows the mode selector: sweep modes show sweep zones,
-			// mop modes show mop zones — never both at once.
+			// mop modes show mop zones — never both at once. Whenever the display comes
+			// up (tool activated or mode switched), zones whose terrain changed since
+			// they were painted are dropped first, so what is shown is what is valid.
+			if (ZoneStore.Instance != null)
+				ZoneStore.Instance.PruneInvalidCells();
 			colorsValid = false;
 			labeledVersion = -1;
 			bool painting = mode == ZoneMode.Sweep || mode == ZoneMode.Mop;
@@ -188,36 +192,23 @@ namespace SweepZones
 				return;
 			switch (mode)
 			{
+			// Cells that fail the zone test are simply skipped while painting;
+			// erasing is never restricted.
 			case ZoneMode.Sweep:
-				if (IsValidZoneCell(cell))
+				if (ZoneStore.IsValidZoneCell(cell))
 					store.SetSweep(cell, ToolMenu.Instance.PriorityScreen.GetLastSelectedPriority());
 				break;
 			case ZoneMode.ClearSweep:
 				store.RemoveSweep(cell);
 				break;
 			case ZoneMode.Mop:
-				if (IsValidZoneCell(cell))
+				if (ZoneStore.IsValidZoneCell(cell))
 					store.SetMop(cell, ToolMenu.Instance.PriorityScreen.GetLastSelectedPriority());
 				break;
 			case ZoneMode.ClearMop:
 				store.RemoveMop(cell);
 				break;
 			}
-		}
-
-		/// <summary>
-		/// Zones live on open cells directly above solid ground: air, liquid, or
-		/// plant-occupied cells over a floor. Grid.Solid is the sim's material
-		/// solidity, so surfaces that only Duplicants can stand on (for example
-		/// open pneumatic doors) do not count as ground. Cells that fail the test
-		/// are simply skipped while painting; erasing is never restricted.
-		/// </summary>
-		private static bool IsValidZoneCell(int cell)
-		{
-			if (!Grid.IsValidCell(cell) || Grid.Solid[cell])
-				return false;
-			int below = Grid.CellBelow(cell);
-			return Grid.IsValidCell(below) && Grid.Solid[below];
 		}
 
 		public override void GetOverlayColorData(out HashSet<ToolMenu.CellColorData> colors)

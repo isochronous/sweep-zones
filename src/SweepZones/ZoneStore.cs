@@ -66,6 +66,49 @@ namespace SweepZones
 				Version++;
 		}
 
+		/// <summary>
+		/// Zones live on open cells directly above solid ground: air, liquid, or
+		/// plant-occupied cells over a floor. Grid.Solid is the sim's material
+		/// solidity, so surfaces that only Duplicants can stand on (for example
+		/// open pneumatic doors) do not count as ground.
+		/// </summary>
+		public static bool IsValidZoneCell(int cell)
+		{
+			if (!Grid.IsValidCell(cell) || Grid.Solid[cell])
+				return false;
+			int below = Grid.CellBelow(cell);
+			return Grid.IsValidCell(below) && Grid.Solid[below];
+		}
+
+		/// <summary>
+		/// Drops zone cells that no longer pass <see cref="IsValidZoneCell"/> (floor dug
+		/// out, cell built over, ...). Called when the tool brings up the zone display,
+		/// so the terrain can change freely in between without zones flickering away.
+		/// </summary>
+		public void PruneInvalidCells()
+		{
+			if (Prune(sweepCells) | Prune(mopCells))
+				Version++;
+		}
+
+		private static bool Prune(Dictionary<int, PrioritySetting> cells)
+		{
+			List<int> invalid = null;
+			foreach (int cell in cells.Keys)
+			{
+				if (IsValidZoneCell(cell))
+					continue;
+				if (invalid == null)
+					invalid = new List<int>();
+				invalid.Add(cell);
+			}
+			if (invalid == null)
+				return false;
+			foreach (int cell in invalid)
+				cells.Remove(cell);
+			return true;
+		}
+
 		public void Sim1000ms(float dt)
 		{
 			MarkSweepZones();
@@ -97,10 +140,14 @@ namespace SweepZones
 					// stomp priorities the player changed by hand.
 					if (prefabID.HasTag(GameTags.BaseMinion) || prefabID.HasTag(GameTags.Garbage))
 						continue;
-					if (go.GetComponent<MinionIdentity>() != null)
-						continue;
+					// Cached-field checks first: things that sit in a zone indefinitely
+					// without ever being clearable (critters, for example) are rejected
+					// here every pass, so the GetComponent below only runs for an item
+					// on the one pass that actually marks it.
 					Clearable clearable = pickupable.Clearable;
 					if (clearable == null || !clearable.isClearable)
+						continue;
+					if (go.GetComponent<MinionIdentity>() != null)
 						continue;
 					clearable.MarkForClear();
 					Prioritizable prioritizable = go.GetComponent<Prioritizable>();
