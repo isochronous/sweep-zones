@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
@@ -38,7 +39,7 @@ namespace SweepZones
 		private readonly HashSet<ToolMenu.CellColorData> cellColors = new HashSet<ToolMenu.CellColorData>();
 		private int coloredVersion = -1;
 		private bool colorsValid;
-		private readonly List<System.Guid> priorityLabels = new List<System.Guid>();
+		private readonly List<Guid> priorityLabels = new List<Guid>();
 		private int labeledVersion = -1;
 		private GameObject outlineObject;
 		private Mesh outlineMesh;
@@ -253,19 +254,19 @@ namespace SweepZones
 				return;
 			ClearPriorityLabels();
 			labeledVersion = store.Version;
+			RebuildOutline(store);
 			GameObject textPrefab = AreaVisualizerTextPrefabField != null
 				? AreaVisualizerTextPrefabField.GetValue(this) as GameObject : null;
 			if (textPrefab == null)
 				return;
 			AddRegionLabels(ActiveCells(store), textPrefab, isMop: InMopMode);
-			RebuildOutline(store);
 		}
 
 		private void ClearPriorityLabels()
 		{
 			NameDisplayScreen screen = NameDisplayScreen.Instance;
 			if (screen != null)
-				foreach (System.Guid guid in priorityLabels)
+				foreach (Guid guid in priorityLabels)
 					screen.RemoveWorldText(guid);
 			priorityLabels.Clear();
 			labeledVersion = -1;
@@ -358,7 +359,7 @@ namespace SweepZones
 			NameDisplayScreen screen = NameDisplayScreen.Instance;
 			foreach ((PrioritySetting priority, List<int> cells) in FindRegions(zone))
 			{
-				System.Guid guid = screen.AddAreaText(LabelText(priority), textPrefab);
+				Guid guid = screen.AddAreaText(LabelText(priority), textPrefab);
 				GameObject label = screen.GetWorldText(guid);
 				if (label != null)
 				{

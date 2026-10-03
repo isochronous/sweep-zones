@@ -14,7 +14,7 @@ A ground-up rewrite of the feature set of [Berkays/Rubacava's Sweep Zones](https
 - **Saved with your game** (zones serialize into the save file; loading without the mod just drops them).
 - Mop zones follow vanilla mop rules (liquid on a solid floor, ≤ 150 kg).
 - **Rebindable hotkey** (default `Shift+Z`) to activate the tool, configurable under options → game → controls → Mods (via [PLib](https://github.com/peterhaneve/ONIMods/tree/main/PLib), merged into the mod DLL).
-- No image assets (the toolbar icon is drawn procedurally).
+- No loose image assets: the toolbar icon is a PNG embedded in the DLL.
 
 Erasing a zone keeps errands that were already created — cancel those with the vanilla Cancel tool if needed.
 

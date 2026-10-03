@@ -33,7 +33,7 @@ namespace SweepZones
 				foreach (InterfaceTool existing in __instance.tools)
 					if (existing is SweepZoneTool)
 						return;
-				GameObject go = new GameObject("SweepZoneTool");
+				GameObject go = new GameObject(nameof(SweepZoneTool));
 				go.transform.SetParent(__instance.gameObject.transform);
 				go.SetActive(value: false);
 				SweepZoneTool tool = go.AddComponent<SweepZoneTool>();
@@ -55,7 +55,7 @@ namespace SweepZones
 			{
 				__instance.basicTools.Add(ToolMenu.CreateToolCollection(
 					ModStrings.ToolName, ToolIcon.SpriteName, SweepZonesMod.ToolAction,
-					"SweepZoneTool", ModStrings.ToolTooltip, largeIcon: false));
+					nameof(SweepZoneTool), ModStrings.ToolTooltip, largeIcon: false));
 			}
 		}
 	}

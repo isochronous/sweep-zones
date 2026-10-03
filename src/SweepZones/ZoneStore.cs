@@ -135,14 +135,14 @@ namespace SweepZones
 					if (go == null || pickupable == null)
 						continue;
 					KPrefabID prefabID = pickupable.KPrefabID;
-					// Skip Duplicants/robots, and anything already marked (Garbage tag is
+					// Skip Duplicants, and anything already marked (Garbage tag is
 					// added by MarkForClear and removed by CancelClearing) so we don't
 					// stomp priorities the player changed by hand.
 					if (prefabID.HasTag(GameTags.BaseMinion) || prefabID.HasTag(GameTags.Garbage))
 						continue;
 					// Cached-field checks first: things that sit in a zone indefinitely
 					// without ever being clearable (critters, for example) are rejected
-					// here every pass, so the GetComponent below only runs for an item
+					// here every pass, so the GetComponents below only run for an item
 					// on the one pass that actually marks it.
 					Clearable clearable = pickupable.Clearable;
 					if (clearable == null || !clearable.isClearable)
@@ -168,14 +168,9 @@ namespace SweepZones
 			{
 				int cell = kvp.Key;
 				// Same conditions the vanilla mop tool enforces.
-				if (!Grid.IsValidCell(cell) || Grid.Solid[cell])
+				if (!IsValidZoneCell(cell) || !Grid.Element[cell].IsLiquid)
 					continue;
 				if (Grid.Objects[cell, (int)ObjectLayer.MopPlacer] != null)
-					continue;
-				if (!Grid.Element[cell].IsLiquid)
-					continue;
-				int below = Grid.CellBelow(cell);
-				if (!Grid.IsValidCell(below) || !Grid.Solid[below])
 					continue;
 				if (Grid.Mass[cell] > MopTool.maxMopAmt)
 					continue;
