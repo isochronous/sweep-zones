@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- The zone outline is still drawn when the game's label prefab cannot be found; before, the outline vanished together with the priority labels.
+- Internal cleanup; zones behave as before.
+
 ## 1.5.0 - 2026-09-29
 
 - Zones prune themselves: each time the tool is opened or its mode switched, zone cells whose floor was dug out or that were built over are dropped, so only valid zones are shown.
