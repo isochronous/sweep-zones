@@ -45,6 +45,10 @@ dotnet build src/SweepZones -c Release -p:GameFolder="<path-to>\OxygenNotInclude
 
 A successful build automatically deploys the mod to `Documents\Klei\OxygenNotIncluded\mods\local\SweepZones`.
 
+## Translations
+
+The mod is available in English and Chinese (Simplified). The game's language setting picks the translation, loaded from `translations/<locale>.po` next to the mod DLL. Other languages can be added from the template `translations/SweepZones.pot`.
+
 ## Implementation notes
 
-Four Harmony patch points, all on stable surfaces: `Db.Initialize` (strings + icon), `SaveGame.OnPrefabInit` (zone store component), `PlayerController.OnPrefabInit` (tool registration), `ToolMenu.CreateBasicTools` (toolbar button). The tool itself subclasses the game's `DragTool` and reuses the vanilla Sweep tool's cursor/visualizer assets; the mode menu is the game's own `ToolParameterMenu`.
+Four Harmony patch points, all on stable surfaces: `Db.Initialize` (tool icon), `SaveGame.OnPrefabInit` (zone store component), `PlayerController.OnPrefabInit` (tool registration), `ToolMenu.CreateBasicTools` (toolbar button). The tool itself subclasses the game's `DragTool` and reuses the vanilla Sweep tool's cursor/visualizer assets; the mode menu is the game's own `ToolParameterMenu`.

@@ -1,7 +1,9 @@
 using HarmonyLib;
+using Isochronous;
 using KMod;
 using PeterHan.PLib.Actions;
 using PeterHan.PLib.Core;
+using TOOL = SweepZones.ModStrings.UI.TOOLS.SWEEPZONES;
 
 namespace SweepZones
 {
@@ -18,9 +20,12 @@ namespace SweepZones
 		{
 			base.OnLoad(harmony);
 			PUtil.InitLibrary(false);
+			// Registering first applies the saved language, so the action title PLib
+			// copies below is already translated.
+			Translations.Register(harmony, typeof(ModStrings));
 			PAction action = new PActionManager().CreateAction(
 				"Isochronous.SweepZones.Tool",
-				ModStrings.ToolName + " tool",
+				TOOL.TOOLNAME,
 				new PKeyBinding(KKeyCode.Z, Modifier.Shift));
 			ToolAction = action.GetKAction();
 			Debug.Log("[SweepZones] Loaded version " + typeof(SweepZonesMod).Assembly.GetName().Version);

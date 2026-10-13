@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Chinese (Simplified) translation. Translations load from translations/<locale>.po; the template for other languages is translations/SweepZones.pot.
+
 ## 1.5.1 - 2026-10-03
 
 - The zone outline is still drawn when the game's label prefab cannot be found; before, the outline vanished together with the priority labels.

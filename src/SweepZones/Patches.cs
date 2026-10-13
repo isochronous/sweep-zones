@@ -1,6 +1,7 @@
 using System;
 using HarmonyLib;
 using UnityEngine;
+using TOOL = SweepZones.ModStrings.UI.TOOLS.SWEEPZONES;
 
 namespace SweepZones
 {
@@ -11,7 +12,6 @@ namespace SweepZones
 		{
 			public static void Postfix()
 			{
-				ModStrings.Register();
 				ToolIcon.Register();
 			}
 		}
@@ -54,8 +54,8 @@ namespace SweepZones
 			public static void Postfix(ToolMenu __instance)
 			{
 				__instance.basicTools.Add(ToolMenu.CreateToolCollection(
-					ModStrings.ToolName, ToolIcon.SpriteName, SweepZonesMod.ToolAction,
-					nameof(SweepZoneTool), ModStrings.ToolTooltip, largeIcon: false));
+					TOOL.NAME, ToolIcon.SpriteName, SweepZonesMod.ToolAction,
+					nameof(SweepZoneTool), TOOL.TOOLTIP, largeIcon: false));
 			}
 		}
 	}

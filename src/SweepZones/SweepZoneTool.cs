@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
+using TOOL = SweepZones.ModStrings.UI.TOOLS.SWEEPZONES;
 
 namespace SweepZones
 {
@@ -84,8 +85,8 @@ namespace SweepZones
 			if (donorCard == null)
 				return;
 			hoverCard = gameObject.AddComponent<HoverTextConfiguration>();
-			hoverCard.ToolName = ModStrings.ToolName.ToUpper();
-			hoverCard.ActionName = ModStrings.HoverActionPaintSweep;
+			hoverCard.ToolName = TOOL.NAME.text.ToUpper();
+			hoverCard.ActionName = TOOL.ACTION_PAINT_SWEEP;
 			hoverCard.HoverTextStyleSettings = donorCard.HoverTextStyleSettings;
 			hoverCard.ToolTitleTextStyle = donorCard.ToolTitleTextStyle;
 			hoverCard.Styles_Title = donorCard.Styles_Title;
@@ -171,16 +172,16 @@ namespace SweepZones
 				switch (mode)
 				{
 				case ZoneMode.Sweep:
-					hoverCard.ActionName = ModStrings.HoverActionPaintSweep;
+					hoverCard.ActionName = TOOL.ACTION_PAINT_SWEEP;
 					break;
 				case ZoneMode.ClearSweep:
-					hoverCard.ActionName = ModStrings.HoverActionEraseSweep;
+					hoverCard.ActionName = TOOL.ACTION_ERASE_SWEEP;
 					break;
 				case ZoneMode.Mop:
-					hoverCard.ActionName = ModStrings.HoverActionPaintMop;
+					hoverCard.ActionName = TOOL.ACTION_PAINT_MOP;
 					break;
 				case ZoneMode.ClearMop:
-					hoverCard.ActionName = ModStrings.HoverActionEraseMop;
+					hoverCard.ActionName = TOOL.ACTION_ERASE_MOP;
 					break;
 				}
 			}
