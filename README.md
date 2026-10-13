@@ -47,7 +47,7 @@ A successful build automatically deploys the mod to `Documents\Klei\OxygenNotInc
 
 ## Translations
 
-The mod is available in English and Chinese (Simplified). The game's language setting picks the translation, loaded from `translations/<locale>.po` next to the mod DLL. Other languages can be added from the template `translations/SweepZones.pot`.
+The mod is available in English, Chinese (Simplified), Korean and Russian. The game's language setting picks the translation, loaded from `translations/<locale>.po` next to the mod DLL. Other languages can be added from the template `translations/SweepZones.pot`.
 
 ## Implementation notes
 

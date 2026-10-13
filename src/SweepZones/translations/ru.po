@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not Included\n"
+"POT Version: 2.0\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_MOP.NAME
+msgctxt "STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_MOP.NAME"
+msgid "Mop zone"
+msgstr "Зона вытирания"
+
+#. STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_MOP.TOOLTIP
+msgctxt "STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_MOP.TOOLTIP"
+msgid "Moppable puddles inside the zone continuously receive mop errands at the selected priority"
+msgstr "Лужи внутри зоны, которые можно вытереть, постоянно получают поручения на вытирание с выбранным приоритетом"
+
+#. STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_MOP_CLEAR.NAME
+msgctxt "STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_MOP_CLEAR.NAME"
+msgid "Erase mop zone"
+msgstr "Стереть зону вытирания"
+
+#. STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_MOP_CLEAR.TOOLTIP
+msgctxt "STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_MOP_CLEAR.TOOLTIP"
+msgid "Remove mop zone cells (existing mop errands are kept)"
+msgstr "Удаляет клетки зоны вытирания (существующие поручения на вытирание сохраняются)"
+
+#. STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_SWEEP.NAME
+msgctxt "STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_SWEEP.NAME"
+msgid "Sweep zone"
+msgstr "Зона подметания"
+
+#. STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_SWEEP.TOOLTIP
+msgctxt "STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_SWEEP.TOOLTIP"
+msgid "Debris inside the zone is continuously marked for sweeping at the selected priority"
+msgstr "Обломки внутри зоны постоянно помечаются для подметания с выбранным приоритетом"
+
+#. STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_SWEEP_CLEAR.NAME
+msgctxt "STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_SWEEP_CLEAR.NAME"
+msgid "Erase sweep zone"
+msgstr "Стереть зону подметания"
+
+#. STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_SWEEP_CLEAR.TOOLTIP
+msgctxt "STRINGS.UI.TOOLS.FILTERLAYERS.SWEEPZONES_SWEEP_CLEAR.TOOLTIP"
+msgid "Remove sweep zone cells (existing sweep errands are kept)"
+msgstr "Удаляет клетки зоны подметания (существующие поручения на подметание сохраняются)"
+
+#. STRINGS.UI.TOOLS.SWEEPZONES.ACTION_ERASE_MOP
+msgctxt "STRINGS.UI.TOOLS.SWEEPZONES.ACTION_ERASE_MOP"
+msgid "ERASE MOP ZONE"
+msgstr "СТЕРЕТЬ ЗОНУ ВЫТИРАНИЯ"
+
+#. STRINGS.UI.TOOLS.SWEEPZONES.ACTION_ERASE_SWEEP
+msgctxt "STRINGS.UI.TOOLS.SWEEPZONES.ACTION_ERASE_SWEEP"
+msgid "ERASE SWEEP ZONE"
+msgstr "СТЕРЕТЬ ЗОНУ ПОДМЕТАНИЯ"
+
+#. STRINGS.UI.TOOLS.SWEEPZONES.ACTION_PAINT_MOP
+msgctxt "STRINGS.UI.TOOLS.SWEEPZONES.ACTION_PAINT_MOP"
+msgid "PAINT MOP ZONE"
+msgstr "НАРИСОВАТЬ ЗОНУ ВЫТИРАНИЯ"
+
+#. STRINGS.UI.TOOLS.SWEEPZONES.ACTION_PAINT_SWEEP
+msgctxt "STRINGS.UI.TOOLS.SWEEPZONES.ACTION_PAINT_SWEEP"
+msgid "PAINT SWEEP ZONE"
+msgstr "НАРИСОВАТЬ ЗОНУ ПОДМЕТАНИЯ"
+
+#. STRINGS.UI.TOOLS.SWEEPZONES.NAME
+msgctxt "STRINGS.UI.TOOLS.SWEEPZONES.NAME"
+msgid "Sweep Zones"
+msgstr "Зоны подметания"
+
+#. STRINGS.UI.TOOLS.SWEEPZONES.TOOLNAME
+msgctxt "STRINGS.UI.TOOLS.SWEEPZONES.TOOLNAME"
+msgid "Sweep Zones tool"
+msgstr "Команда \"Зоны подметания\""
+
+#. STRINGS.UI.TOOLS.SWEEPZONES.TOOLTIP
+msgctxt "STRINGS.UI.TOOLS.SWEEPZONES.TOOLTIP"
+msgid "Paint zones where debris is automatically marked for sweeping and puddles for mopping"
+msgstr "Рисует зоны, в которых обломки автоматически помечаются для подметания, а лужи — для вытирания"

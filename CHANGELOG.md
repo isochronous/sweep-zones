@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Chinese (Simplified) translation. Translations load from translations/<locale>.po; the template for other languages is translations/SweepZones.pot.
+- Chinese (Simplified), Korean and Russian translations. Translations load from translations/<locale>.po; the template for other languages is translations/SweepZones.pot.
 
 ## 1.5.1 - 2026-10-03
 
