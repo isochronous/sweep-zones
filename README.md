@@ -1,5 +1,7 @@
 # Sweep Zones Redux
 
+**This repository is archived.** This project now lives in [isochronous/ONI-Mods](https://github.com/isochronous/ONI-Mods/tree/main/mods/sweep-zones), with its full history; work and new releases continue there. The releases published here stay available.
+
 An [Oxygen Not Included](https://www.klei.com/games/oxygen-not-included) mod that adds a **Sweep Zones** tool to the toolbar: paint persistent zones and any debris that lands in them is automatically marked for sweeping (and moppable puddles receive mop errands) at the priority you painted with — indefinitely, until you erase the zone.
 
 A ground-up rewrite of the feature set of [Berkays/Rubacava's Sweep Zones](https://github.com/Berkays/OniMods/tree/main/SweepZones) (unmaintained, crashes on current game versions) for the current game (U59+, all DLCs). No code or assets are shared with the original.
